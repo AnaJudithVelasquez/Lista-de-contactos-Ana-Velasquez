@@ -1,0 +1,97 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #a7c7ff, #d6e6ff);
+    margin: 0;
+}
+
+.container {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.header img {
+    width: 180px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+}
+
+.header h1 {
+    color: #1f4fb5;
+    font-weight: bold;
+}
+
+.inputs input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+    background: #f5f8ff;
+}
+
+.genero {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-add {
+    background: #ff85a2;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: #ff5c87;
+}
+
+.lista {
+    margin-top: 30px;
+}
+
+.contacto {
+    background: #ffffff;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contacto span {
+    font-size: 14px;
+    color: #444;
+    max-width: 70%;
+}
+
+.acciones button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+.editar {
+    color: #4a90e2;
+}
+
+.eliminar {
+    color: #ff5c5c;
+}
+
+.acciones button:hover {
+    transform: scale(1.2);
+}
+
+.oculto {
+    display: none;
+}

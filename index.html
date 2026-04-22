@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi lista de contactos 💙 Ana Velasquez</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <img src="img/contacto.png" alt="contactos">
+        <h1>💙 Lista de Contactos 💙</h1>
+    </div>
+
+    <form id="formulario">
+
+        <div class="inputs">
+            <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+            <input type="text" id="apellido" placeholder="Ingresa tu apellido">
+            <input type="text" id="telefono" placeholder="Ingresa tu teléfono">
+            <input type="text" id="ciudad" placeholder="Ingresa tu ciudad">
+            <input type="text" id="direccion" placeholder="Ingresa tu dirección">
+        </div>
+
+        <div class="genero">
+            <label><input type="radio" name="genero" value="mujer"> Mujer</label>
+            <label><input type="radio" name="genero" value="hombre"> Hombre</label>
+        </div>
+
+        <button type="submit" class="btn-add" id="btnGuardar">Agregar</button>
+
+    </form>
+
+    <p id="cargando" class="oculto">Cargando...</p>
+
+    <div id="listaContactos" class="lista"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

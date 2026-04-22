@@ -51,7 +51,7 @@ Básicamente, cuando uno llena el formulario y le da al botón, los datos se gua
 
 Cuando uno le da en editar, los datos vuelven a aparecer en el formulario para poder cambiarlos, y luego se actualizan. Si le das eliminar, simplemente se borra el contacto de la lista.
 
-También se muestra un pequeño mensaje de "Cargando..." como simulando que está guardando la información.
+También se muestra un pequeño mensaje de "Cargando..." como simulación del proceso de guardado de la información.
 
 ---
 

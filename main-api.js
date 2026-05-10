@@ -8,6 +8,14 @@ const cargando = document.getElementById("cargando");
 let contactos = [];
 let editando = null;
 
+function esperarRender() {
+    return new Promise(resolve => setTimeout(resolve, 50));
+}
+
+function esperarMinimo(tiempo) {
+    return new Promise(resolve => setTimeout(resolve, tiempo));
+}
+
 function mostrarSpinner() {
     cargando.classList.remove("oculto");
 }
@@ -18,9 +26,7 @@ function ocultarSpinner() {
 
 function limpiarFormulario() {
     formulario.reset();
-
     editando = null;
-
     btnGuardar.textContent = "Agregar";
     btnGuardar.style.background = "#ff85a2";
 }
@@ -28,17 +34,12 @@ function limpiarFormulario() {
 async function obtenerContactos() {
 
     try {
-
         const respuesta = await fetch(API_URL);
-
         contactos = await respuesta.json();
-
         mostrarContactos();
 
     } catch(error) {
-
         console.log("Error obteniendo contactos:", error);
-
     }
 }
 
@@ -49,7 +50,6 @@ function mostrarContactos() {
     contactos.forEach((c) => {
 
         const div = document.createElement("div");
-
         div.classList.add("contacto");
 
         const icono = c.genero === "mujer" ? "👩" : "👨";
@@ -61,7 +61,6 @@ function mostrarContactos() {
 
             <div class="acciones">
                 <button class="editar" onclick="editar(${c.id})">✏️</button>
-
                 <button class="eliminar" onclick="eliminar(${c.id})">🗑️</button>
             </div>
         `;
@@ -83,13 +82,14 @@ formulario.addEventListener("submit", async function(e) {
     const genero = document.querySelector("input[name='genero']:checked");
 
     if (!nombre || !apellido || !telefono || !ciudad || !direccion || !genero) {
-
         alert("Completa todos los campos");
-
         return;
     }
 
     mostrarSpinner();
+    await esperarRender();
+
+    const inicio = Date.now();
 
     const nuevo = {
         nombre,
@@ -103,37 +103,36 @@ formulario.addEventListener("submit", async function(e) {
     try {
 
         if (editando === null) {
-
             await agregarContacto(nuevo);
-
         } else {
-
             await actualizarContacto(editando, nuevo);
         }
 
         limpiarFormulario();
-
-        obtenerContactos();
+        await obtenerContactos();
 
     } catch(error) {
-
         console.log("Error guardando contacto:", error);
 
-    }
+    } finally {
 
-    ocultarSpinner();
+        const tiempoTranscurrido = Date.now() - inicio;
+
+        if (tiempoTranscurrido < 400) {
+            await esperarMinimo(400 - tiempoTranscurrido);
+        }
+
+        ocultarSpinner();
+    }
 });
 
 async function agregarContacto(contacto) {
 
     await fetch(API_URL, {
-
         method: "POST",
-
         headers: {
             "Content-Type": "application/json"
         },
-
         body: JSON.stringify(contacto)
     });
 }
@@ -141,18 +140,20 @@ async function agregarContacto(contacto) {
 async function actualizarContacto(id, contacto) {
 
     await fetch(`${API_URL}/${id}`, {
-
         method: "PUT",
-
         headers: {
             "Content-Type": "application/json"
         },
-
         body: JSON.stringify(contacto)
     });
 }
 
 async function eliminar(id) {
+
+    mostrarSpinner();
+    await esperarRender();
+
+    const inicio = Date.now();
 
     try {
 
@@ -160,12 +161,20 @@ async function eliminar(id) {
             method: "DELETE"
         });
 
-        obtenerContactos();
+        await obtenerContactos();
 
     } catch(error) {
-
         console.log("Error eliminando contacto:", error);
 
+    } finally {
+
+        const tiempoTranscurrido = Date.now() - inicio;
+
+        if (tiempoTranscurrido < 400) { 
+            await esperarMinimo(400 - tiempoTranscurrido);
+        }
+
+        ocultarSpinner();
     }
 }
 
@@ -186,7 +195,6 @@ function editar(id) {
     editando = id;
 
     btnGuardar.textContent = "Actualizar";
-
     btnGuardar.style.background = "#4a90e2";
 }
 

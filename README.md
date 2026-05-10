@@ -134,7 +134,7 @@ http://localhost:3000
 
 La aplicación usa una API REST hecha con Express para conectar el frontend con la base de datos MySQL.
 
-Cuando el usuario agrega, edita o elimina un contacto, JavaScript envía peticiones usando `fetch()` a la API.
+Cuando se agrega, edita o elimina un contacto, JavaScript envía peticiones usando `fetch()` a la API.
 
 El servidor recibe esos datos y hace consultas en MySQL para guardar, actualizar o eliminar la información.
 

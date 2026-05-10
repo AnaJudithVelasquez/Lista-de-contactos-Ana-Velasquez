@@ -1,10 +1,10 @@
 # 💙 Lista de Contactos - Ana Velasquez 611
 
-Este proyecto consiste en una aplicación web sencilla donde se pueden gestionar contactos utilizando **JavaScript Vanilla**, manipulando el DOM y almacenando la información en el navegador con **LocalStorage**.
+Este proyecto consiste en una aplicación web para gestionar contactos utilizando JavaScript Vanilla, conectada a una API REST creada con Node.js y Express, y almacenando la información en una base de datos MySQL.
 
 ---
 
-## 📌 ¿Qué hace la aplicación?
+# 📌 ¿Qué hace la aplicación?
 
 La aplicación permite:
 
@@ -20,69 +20,155 @@ Cada contacto contiene:
 * Teléfono
 * Ciudad
 * Dirección
-* Tambien puede elegirse el género (Femenino o Masculino)
+* Género (Hombre o Mujer)
 
 ---
 
-## 🛠️ Tecnologías usadas
+# 🛠️ Tecnologías utilizadas
+
+## Frontend
 
 * HTML
 * CSS
-* JavaScript (Vanilla)
-* LocalStorage
+* JavaScript Vanilla
+
+## Backend
+
+* Node.js
+* Express.js
+* Cors
+
+## Base de Datos
+
+* MySQL
 
 ---
 
-## ▶️ ¿Cómo ejecutar el proyecto?
+# ⚙️ Dependencias instaladas
 
-1. Descargar o clonar el repositorio
-2. Abrir la carpeta del proyecto
-3. Abrir el archivo `index.html` en cualquier navegador (Google Chrome, Edge, etc.)
+Para instalar las dependencias del proyecto se usaron los siguientes comandos:
 
-También se puede abrir con clic derecho → **Abrir con navegador**
+* npm install express cors mysql2
 
-No es necesario instalar nada adicional.
+Dependencia de desarrollo:
+
+* npm install chalk --save-dev
+
+# ▶️ ¿Cómo ejecutar el proyecto?
+
+1. Clonar o descargar el repositorio
+
+Abrir la carpeta del proyecto en Visual Studio Code.
+
+2. Instalar Node.js
+
+Descargar Node.js desde la página oficial:
+
+https://nodejs.org
+
+Instalar la versión LTS.
+
+Verificar instalación:
+
+* node -v
+* npm -v
+
+# 🗄️ Configuración de MySQL
+
+## 4. Crear la base de datos
+
+Abrir MySQL Workbench y ejecutar el siguiente script SQL:
+
+CREATE DATABASE lista_contactos;
+
+USE lista_contactos;
+
+CREATE TABLE contactos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(100),
+apellido VARCHAR(100),
+telefono VARCHAR(50),
+ciudad VARCHAR(100),
+direccion VARCHAR(200),
+genero VARCHAR(20)
+);
+
+
+## 5. Configurar conexión MySQL
+
+En el archivo `server.js` modificar la contraseña según la contraseña personal de MySQL:
+
+const db = mysql.createConnection({
+host: "127.0.0.1",
+user: "root",
+password: "TU_CONTRASEÑA",
+database: "lista_contactos"
+});
+
 
 ---
 
-### 💡 ¿Cómo funciona?
+# 🚀 Ejecutar el servidor
 
-Básicamente, cuando uno llena el formulario y le da al botón, los datos se guardan en una lista dentro del código. Esa información también se guarda en el LocalStorage del navegador, entonces si uno recarga la página, los contactos siguen ahí.
+En la terminal ejecutar:
 
-Cuando uno le da en editar, los datos vuelven a aparecer en el formulario para poder cambiarlos, y luego se actualizan. Si le das eliminar, simplemente se borra el contacto de la lista.
+node server.js
 
-También se muestra un pequeño mensaje de "Cargando..." como simulación del proceso de guardado de la información.
+
+Si todo funciona correctamente aparecerá:
+MySQL conectado
+Servidor corriendo en puerto 3000
+
 
 ---
 
-## 🧠 ¿Qué aprendí?
+# 🌐 Abrir el proyecto
+
+Abrir en el navegador:
+http://localhost:3000
+
+
+---
+
+# 💡 ¿Cómo funciona?
+
+La aplicación usa una API REST hecha con Express para conectar el frontend con la base de datos MySQL.
+
+Cuando el usuario agrega, edita o elimina un contacto, JavaScript envía peticiones usando `fetch()` a la API.
+
+El servidor recibe esos datos y hace consultas en MySQL para guardar, actualizar o eliminar la información.
+
+Después, los contactos se actualizan automáticamente y se muestran en la pantalla.
+
+---
+
+# 🧠 ¿Qué aprendí?
 
 En esta actividad aprendí:
 
-* A manejar eventos en JavaScript con `addEventListener`
-* A manipular el DOM para mostrar información dinámicamente
-* A usar LocalStorage para guardar datos en el navegador
-* A validar formularios antes de enviar información
-* A trabajar con arreglos y objetos en JavaScript
-* A mejorar la parte visual con CSS
+* A crear una API REST básica con Express  
+* A conectar Node.js con MySQL  
+* A conectar frontend y backend  
+* A trabajar con bases de datos reales  
+* A utilizar async/await en JavaScript  
+* A manejar rutas y peticiones HTTP  
 
 ---
 
-## ⚠️ Dificultades
+# ⚠️ Dificultades
 
 Lo que más se me dificultó fue:
 
-* Entender cómo editar un contacto sin crear uno nuevo
-* Manejar el índice del arreglo para actualizar correctamente
-* Trabajar con LocalStorage al momento convertir datos con JSON
-* Hacer que el botón cambiara entre “Agregar” y “Actualizar”
+* Comprender la conexión entre frontend, backend y MySQL  
+* Configurar correctamente Node.js y npm  
+* Entender cómo funcionan las rutas API  
+* Manejar errores de conexión con MySQL  
 
 ---
 
-## ✨ Conclusión
+# ✨ Conclusión
 
-Esta actividad me ayudó a entender cómo funciona JavaScript en el navegador sin necesidad de usar frameworks, y cómo se pueden crear aplicaciones interactivas utilizando solo HTML, CSS y JavaScript.
+Esta actividad me ayudó a entender cómo funciona una aplicación web completa conectando frontend, backend y base de datos.
 
-También entendí que el LocalStorage es independiente por navegador, por lo que los datos no se comparten entre Chrome y Edge.
+También comprendí la diferencia entre guardar información en LocalStorage y almacenarla realmente en una base de datos MySQL utilizando una API REST creada con Express.
 
----
